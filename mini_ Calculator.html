@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Calculator</title>
+
+    <!-- Adding style to the calculator -->
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* Utility class */
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        /* Wraper div */
+        #cont{
+            width: 50vw;
+            height: 100vh;
+            border: 2px solid red;
+        }
+
+
+        /* btn div */
+        #btn{
+            flex-direction: row;
+            /* border: 2px solid red; */
+            width: 50vw;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        
+        #btn>button{
+            padding: 5px 8px;
+        }
+
+
+        input{
+            width: 200px;
+            height: 30px;
+        }
+
+        
+        #int{
+            gap: 10px;
+        }
+
+
+        h1{
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+
+    </style>
+</head>
+<body class="flex">
+
+  <div id="cont" >
+    
+            <h1 class="flex">Mini Calculator</h1 >
+
+            <div id="int" class="flex">
+                <input type="number" id ="firstnumber" placeholder="Enter 1st number"> 
+                <input type="number" id ="secondnumber" placeholder="Enter 2nd number"> 
+            </div>
+
+            <div id="btn" class="flex">
+                <button onclick="calculate('+')">Add</button>
+                <button onclick="calculate('-')">Subtract</button>
+                <button onclick="calculate('*')">Multiply</button>
+                <button onclick="calculate('/')">Divide</button>
+            </div>
+
+  </div>
+
+</body>
+</html>
+
+
+
+<!-- Adding functionality to the calculator -->
+<script>
+    // Catching the inputs in a variable
+    var firstnum=document.getElementById("firstnumber")
+    var secondnum=document.getElementById("secondnumber")
+    
+
+    // Calculate function
+    function calculate(opra){
+
+        // converting the input from string to number
+        var num1=+(firstnum.value);
+        var num2=+(secondnum.value);
+
+        // Doing opreations using switch case
+        switch (opra){
+            case '+':
+                alert(num1+num2)
+                break;
+            case '-':
+                alert(num1-num2) 
+                break;
+            case '*' :
+                alert(num1*num2) 
+                break;
+            case '/':
+               alert(num1/num2) 
+               break;
+            default:
+                alert("Mini calculator")  
+                break; 
+        }
+    }
+</script>
