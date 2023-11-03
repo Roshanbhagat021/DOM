@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration</title>
+</head>
+<body>
+	<input type="text" name="name" id="name">
+	<select id="gender">
+		<option value="">--</option>
+		<option value="male">M</option>
+		<option value="female">F</option>
+	</select>
+	<input type="text" name="email" id="email">
+	<input type="text" name="mobile" id="mobile">
+	<hr>
+	<h1 id="dName">NAME</h1>
+	<h2 id="dGender">GENDER</h2>
+	<h3 id="dEmail">EMAIL</h3>
+	<h4 id="dMobile">MOBILE</h4>
+	<hr>
+	<button onclick="showName()">NAME</button>
+	<button onclick="showGender()">GENDER</button>
+	<button onclick="showEmail()">EMAIL</button>
+	<button onclick="showMobile()">MOBILE</button>
+	<button onclick="resetForm()">RESET FORM</button>
+	<button onclick="resetDisplay()">RESET DISPLAY</button>
+	<script type="text/javascript">
+
+        
+        var nam=document.getElementById("dName")
+        var inp=document.getElementById("name")
+        function showName() {
+			nam.innerText=`NAME:${inp.value}`
+		}
+		var gen=document.getElementById("dGender")
+        var inp2=document.getElementById("gender")
+		function showGender() {
+			 gen.innerText=`GENDER: ${inp2.value}`
+		}
+		var em=document.getElementById("dEmail")
+		var inp3=document.getElementById("email")
+		function showEmail() {
+			em.innerText=`EMAIL: ${inp3.value}`
+		}
+		var mo=document.getElementById("dMobile")
+		var inp4=document.getElementById("mobile")
+		function showMobile() {
+			mo.innerText=`MOBILE: ${inp4.value}`
+		}
+		
+		function resetForm() {
+			inp.value=""
+			inp2.value=""
+			inp3.value=""
+			inp4.value=""
+			
+
+		}
+
+		function resetDisplay() {
+			nam.innerText=`NAME`
+			gen.innerText=`GENDER`
+			em.innerText=`EMAIL`
+			mo.innerText=`MOBILE`
+		}
+	</script>
+</body>
+</html>
