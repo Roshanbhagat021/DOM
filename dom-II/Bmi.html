@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body{
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-color:#89CFF3;
+        }
+
+        #cont{
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 10vw;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            background-color: white;
+            max-width: 65vw;
+        }
+
+        #heading{
+            text-align: center;
+            font-size: 2.5rem;
+            color: #A06EE1;
+            text-decoration: underline;
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        form{
+            font-size: 25px;
+        }
+
+        form > input{
+            font-size: 20px;
+            margin-block: 10px;
+        }
+
+        form > input:hover{
+            text-decoration: none;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            cursor: pointer;
+
+        }
+
+
+        .highlighted-bmi{
+            color: #FF9130;
+            text-decoration: underline;
+        }
+
+       
+    </style>
+</head>
+<body>
+
+    <div id="cont">
+        <h1 id="heading">Check Your BMI</h1>
+
+        <h2>Enter your weitht and height below to check your BMI Result</h2>
+
+        <form action="">
+            <label for="">Put your weight in (KG)</label>
+            <br>
+            <input type="number" name="" id="weight" placeholder="Weight (KG)">
+            <br>
+            <label for="">Height in (CM)</label>
+            <br>
+            <input type="number" name="" id="height" placeholder="Height (CM)"">
+            <br>
+            <input type="submit" name="" id="submit" value="Calculate BMI" >
+        </form>
+
+    </div>
+    
+</body>
+</html>
+
+<script>
+ var weight=document.querySelector("#weight")
+ var height=document.querySelector("#height")
+ var submit=document.querySelector("#submit")
+ var div=document.getElementById("cont")
+
+
+function showresult(e) {
+  e.preventDefault();    
+
+  if(weight.value==undefined && height.value==undefined){
+    alert("please enter weight and height")
+  }
+    
+   let existingResult=div.querySelector("#appended");
+    if(existingResult){
+        div.removeChild(existingResult)
+    }
+
+
+
+    let v1=Number(((height.value)/100)**2)
+    let v2=(Number(weight.value)/v1)
+
+    var roundedBMI = v2.toFixed(1);
+    let finalresut=check(roundedBMI)
+    
+    
+
+    let result=document.createElement("h1")
+    result.id="appended";
+    result.style.color="#86EE60";
+    
+    // result.innerText=`Your BMI is  ${roundedBMI}  which means You are ${finalresut}`
+    result.innerHTML=`Your BMI is <span class="highlighted-bmi">${roundedBMI}</span>  which means <span class="highlighted-bmi"> <br>You are ${finalresut}.</span>`
+
+  div.appendChild(result);
+}
+
+submit.addEventListener("click", showresult);
+
+
+function check(x){
+    if(x <= 18.4){
+        return "Under Weight"
+    }
+    else if(x >= 18.5 && x <= 24.9){
+        return "Normal Weight"
+    }
+    else if(x >= 25 && x <=29.9){
+        return "Overweight"
+    }
+    else if(x >=30){
+        return "Obese"
+    }
+}
+
+
+</script>

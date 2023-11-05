@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... your existing head content ... -->
+</head>
+<body>
+    <div id="cont">
+        <h1>Check Your BMI</h1>
+        <h2>Enter your weight and height below to check your BMI Result</h2>
+        <form action="">
+            <label for="weight">Put your weight in (KG)</label><br>
+            <input type="number" id="weight" placeholder="Weight (KG)"><br>
+            <label for="height">Height in (CM)</label><br>
+            <input type="number" id="height" placeholder="Height (CM)"><br>
+            <input type="submit" id="submit" value="Calculate BMI">
+        </form>
+    </div>
+    
+    <script>
+        var weight = document.querySelector("#weight");
+        var height = document.querySelector("#height");
+        var submit = document.querySelector("#submit");
+        var div = document.getElementById("cont");
+    
+        function showresult(e) {
+            e.preventDefault();
+    
+            let v1 = Number((height.value / 100) ** 2);
+            let v2 = (Number(weight.value) / v1);
+    
+            var roundedBMI = v2.toFixed(2);
+            let finalResult = check(roundedBMI);
+    
+            // Remove any existing result
+            var existingResult = div.querySelector("#appended");
+            console.log(existingResult)
+            if (existingResult) {
+                div.removeChild(existingResult);
+            }
+    
+            let result = document.createElement("h1");
+            result.id="appended"
+            result.innerText = `Your BMI is ${roundedBMI} which means you are ${finalResult}`;
+    
+            div.appendChild(result);
+        }
+    
+        submit.addEventListener("click", showresult);
+    
+        function check(x) {
+            if (x <= 18.4) {
+                return "Under Weight";
+            } else if (x >= 18.5 && x <= 24.9) {
+                return "Normal Weight";
+            } else if (x >= 25 && x <= 29.9) {
+                return "Overweight";
+            } else if (x >= 30) {
+                return "Obese";
+            }
+        }
+    </script>
+</body>
+</html>
