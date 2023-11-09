@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    
+</head>
+<style>
+    /* Import the Poppins font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+
+/* Reset all CSS styles to their default values */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Flexbox container */
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Main content */
+main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+/* Min and max value boxes */
+#min_max {
+  display: flex;
+  gap: 150px;
+  text-align: center;
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  font-weight: 450;
+  font-size: 25px;
+}
+
+/* Min value box */
+#min {
+  width: 100px;
+  height: 80px;
+  background-color: red;
+  border: 2px solid black;
+  font-size: 30px;
+}
+
+/* Max value box */
+#max {
+  width: 100px;
+  height: 80px;
+  background-color: green;
+  border: 2px solid black;
+  font-size: 30px;
+}
+
+/* Display box */
+#display {
+  width: 240px;
+  height: 100px;
+  background-color: #B3B3B3;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  overflow: hidden;
+}
+
+/* Keyboard */
+#keyboard {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  height: 300px;
+  width: 240px;
+  gap: 15px;
+}
+
+/* Keyboard buttons */
+#keyboard > div {
+  display: flex;
+  border: 2px solid black;
+  width: 60px;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  background-color: #FF6600;
+}
+
+/* Margin auto class */
+.margin_auto {
+  margin-left: 121%;
+}
+
+/* Green background class */
+.greenbacgro {
+  background-color: #668100 !important;
+}
+
+/* Purple background class */
+.purplenbacgro {
+  background-color: #810065 !important;
+  color: white;
+}
+
+/* Enter button */
+#Enter_btn {
+  width: 240px;
+  height: 70px;
+  background-color: black;
+  border: 2px solid black;
+  color: white;
+}
+
+</style>
+
+<body>
+    <main>
+
+        <!-- min max box -->
+        <div id="min_max">
+            <div>
+                <div id="min" class="flex">43</div>
+                <h1>Min</h1>
+            </div>
+            
+            <div>
+                <div id="max" class="flex">2019</div>
+                <h1>Max</h1>
+            </div>
+        </div>
+
+
+        <!-- Score box -->
+        <div id="score">
+            <h1>SCORE</h1>
+            <div id="display"></div>
+        </div>
+
+
+        <!-- Keyboard -->
+        <div id="keyboard">
+            <div class="greenbacgro">1</div>
+            <div>2</div>
+            <div class="greenbacgro">3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div class="greenbacgro">7</div>
+            <div>8</div>
+            <div class="greenbacgro">9</div>
+            <div class="margin_auto purplenbacgro">0</div>
+        </div>
+        
+
+        <!-- Enter btn -->
+        <div class="flex" id="Enter_btn">
+            <h1>Enter</h1>
+        </div>
+
+    </main>
+    
+</body>
+</html>
+
+
+<script>
+    // Get all keyboard buttons
+const keyButtons = document.querySelectorAll("#keyboard > div");
+
+// Get the Enter button
+const enterButton = document.querySelector("#Enter_btn");
+
+// Create a new paragraph element to display the result
+const resultParagraph = document.createElement("p");
+
+// Get the display element
+const displayElement = document.querySelector("#display");
+
+// Get the min and max value elements
+const minValElement = document.querySelector("#min");
+const maxValElement = document.querySelector("#max");
+
+// Initialize the result variable
+let result = "";
+
+// Add a click event listener to each keyboard button
+keyButtons.forEach(button => button.addEventListener("click", show));
+
+// Add a click event listener to the Enter button
+enterButton.addEventListener("click", calculate);
+
+// Function to display the result
+function show() {
+  // Get the value of the clicked button
+  const buttonValue = event.target.textContent;
+
+  // Append the button value to the result
+  result += buttonValue;
+
+  // Update the result paragraph
+  resultParagraph.textContent = result;
+
+  // Append the result paragraph to the display element
+  displayElement.append(resultParagraph);
+}
+
+// Function to calculate the result
+function calculate() {
+  if (parseFloat(result) < parseFloat(minValElement.textContent)) {
+    // Update the min value
+    minValElement.textContent = result;
+
+    // Clear the result
+    result = "";
+  } else if (parseFloat(result) > parseFloat(maxValElement.textContent)) {
+    // Update the max value
+    maxValElement.textContent = result;
+
+    // Clear the result
+    result = "";
+  } else {
+    // Clear the result
+    result = "";
+  }
+}
+
+</script>
